@@ -1,0 +1,111 @@
+#include "blackone.h"
+void acter::move() {
+	if (Key[KEY_INPUT_RIGHT] >= 1) {
+		if (x1 >= 430) {
+			x1 = x1;
+		}
+		else
+		x1 += 4;
+	}
+	if (Key[KEY_INPUT_DOWN] >= 1) {
+		if (y1 >= 390) {
+			y1 = y1;
+		}
+		else
+		y1 += 4;
+	}
+	if (Key[KEY_INPUT_LEFT] >= 1) {
+		if (x1 <= -10) {
+			x1 = x1;
+		}
+		else
+		x1 -= 4;
+	}
+	if (Key[KEY_INPUT_UP] >= 1) {
+		if (y1 <= -20) {
+			y1 = y1;
+		}
+		else
+		y1 -= 4;
+	}
+} 
+void acter::draw() {
+	DrawGraph(x1, y1, pet,TRUE);
+}
+void acter::draw_d() {
+	DrawGraph(x1, y1, damaged, TRUE);
+}
+void acter::back(){
+	DrawGraph(0, 0, backgro, TRUE);
+}
+void acter::state() {
+	DrawFormatString(530,100,GetColor(255,255,255),"HP:%d",hp);
+	DrawFormatString(530,150,GetColor(255, 255, 255), "Hunger:%d", hunger);
+	DrawFormatString(530, 200, GetColor(255, 255, 255), "tired:%d", tired);
+	DrawFormatString(530, 250, GetColor(255, 255, 255), "EXP:%d", exp);
+	DrawFormatString(530, 300, GetColor(255, 255, 255), "X:%d/Y:%d",x1,y1);
+}
+bool acter::check_f() {
+	if ((x1 >= 320&&x1<=432)&&( y1 <= 368&&y1>=332)&& Key[KEY_INPUT_RETURN] == 1)return TRUE;
+	else return FALSE;
+}
+bool acter::check_h() {
+	if ((x1 >= 384&&x1<=432) &&( y1 <= 100&&y1>=72)&& Key[KEY_INPUT_RETURN] == 1)return TRUE;
+	else return FALSE;
+}
+bool acter::check_s() {
+	if ((x1 >= 50 && x1 <=90 ) && (y1 <= 390 && y1 >= 350) && Key[KEY_INPUT_RETURN] == 1)return TRUE;
+	else return FALSE;
+}
+bool acter::check_m() {
+	if ((x1 >= 200 && x1 <= 240) && (y1 <= 390 && y1 >= 350) && Key[KEY_INPUT_RETURN] == 1)return TRUE;
+	else return FALSE;
+}
+void acter::reset_pos() {
+	x1 = 200;
+	y1 = 200;
+}
+void acter::eat_a() {
+		hp += 15;
+		if (hp >= 100) { hp = 100; }
+		hunger -= 20;
+		if (hunger <= 0) { hunger = 0; }
+		tired += 1;
+		if (tired >= 100) { tired = 100; }
+	play_eat();
+}
+void acter::eat_m() {
+		hp += 20;
+		if (hp >= 100) { hp = 100; }
+		hunger -= 25; 
+		if (hunger <= 0) { hunger = 0; }	
+		tired += 1;
+        if (tired >= 100) { tired = 100; }
+	play_eat();
+}
+void acter::play_bgm() {
+	ChangeVolumeSoundMem(90,bgm);
+	PlaySoundMem(bgm, DX_PLAYTYPE_LOOP);
+}
+void acter::play_eat() {
+	ChangeVolumeSoundMem(90, eat_bgm);
+	PlaySoundMem(eat_bgm, DX_PLAYTYPE_BACK);
+}
+void acter::sleeping() {
+	if (((x1 >= 10 && x1 <= 160) && (y1 >= 10 && y1 <= 160))&& CheckHitKey(KEY_INPUT_RETURN)) {
+		if (tired >= 0) {		
+			tired -= 25; 
+			DrawGraph(x1, y1, sleepmode, TRUE);
+			WaitTimer(1000);
+			}
+		if (tired <= 0) { tired = 0; }
+		}
+	}
+
+void acter::afterdun() {
+	tired += 30;
+}
+bool acter::check_tired() {
+	if (tired > 70) return TRUE;
+	else return FALSE;
+}

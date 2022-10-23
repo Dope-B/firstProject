@@ -1,0 +1,33 @@
+#include "DxLib.h"
+#include "Eat.h"
+void Eat::draw(acter&k){	
+	if (trigger == 0) {
+		getran();
+		trigger = 1;
+	}
+	else {
+		if ((k.x1 >= x - 35 && k.x1 <= x + 40) && (k.y1 >= y - 35 && k.y1 <= y + 40))
+		{
+			trigger = 0;
+			if (m_a >= 60) { k.eat_m(); }
+			else k.eat_a();
+		}
+
+		else {
+			if (m_a >= 60)
+			{
+				DrawGraph(x, y, meat, TRUE);
+			}
+			else
+			{
+				DrawGraph(x, y, apple, TRUE);
+			}
+		}
+	}
+}
+void Eat::getran() {
+	m_a = GetRand(100);
+	x = GetRand(420);
+	y = GetRand(420);
+}
+

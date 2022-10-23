@@ -1,0 +1,38 @@
+#pragma once
+#include "DxLib.h"
+#include "Key.h" 
+#include "slime.h"
+#include <math.h>
+#define PI 3.141592
+class Slime;
+class acter {
+	int pet = LoadGraph("C:/Users/±èµ¿ºó/Desktop/My Work/damagochi/image/PNG/blackone.png");
+	int backgro = LoadGraph("C:/Users/±èµ¿ºó/Desktop/My Work/damagochi/image/PNG/background.png");
+	int bgm = LoadSoundMem("C:/Users/±èµ¿ºó/Desktop/My Work/damagochi/sound/bgm2.mp3");
+	int eat_bgm= LoadSoundMem("C:/Users/±èµ¿ºó/Desktop/My Work/damagochi/sound/es.wav");
+	int sleepmode= LoadGraph("C:/Users/±èµ¿ºó/Desktop/My Work/damagochi/image/PNG/sleepmode.png");
+	int damaged= LoadGraph("C:/Users/±èµ¿ºó/Desktop/My Work/damagochi/image/PNG/damaged.png");
+public:
+	int hunger = 100;
+	int hp = 100;
+	int tired = 50;
+	int exp = 0;
+	void state();
+	int x1, y1 ;
+	void move();
+	void draw();
+	void draw_d();
+	void back(); 
+	bool check_f();
+	bool check_h();
+	void reset_pos();
+	void eat_a();
+	void eat_m();
+	void play_bgm();
+	void play_eat();
+	bool check_s();
+	bool check_m();
+	void sleeping();
+	void afterdun();
+	bool check_tired();
+};

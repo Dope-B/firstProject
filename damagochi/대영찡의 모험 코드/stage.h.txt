@@ -1,0 +1,27 @@
+#pragma once
+#include "DxLib.h"
+class Stage {
+private:
+	int rest= LoadGraph("C:/Users/±èµ¿ºó/Desktop/My Work/damagochi/image/PNG/playground.png");
+	int homegate= LoadGraph("C:/Users/±èµ¿ºó/Desktop/My Work/damagochi/image/PNG/homegate.png");
+	int foodgate= LoadGraph("C:/Users/±èµ¿ºó/Desktop/My Work/damagochi/image/PNG/foodgate.png");
+	int foodzone= LoadGraph("C:/Users/±èµ¿ºó/Desktop/My Work/damagochi/image/PNG/foodzone.png");
+	int waiting= LoadGraph("C:/Users/±èµ¿ºó/Desktop/My Work/damagochi/image/PNG/waiting.png");
+	int slime_land= LoadGraph("C:/Users/±èµ¿ºó/Desktop/My Work/damagochi/image/PNG/slimeland.png");
+	int gate_slime= LoadGraph("C:/Users/±èµ¿ºó/Desktop/My Work/damagochi/image/PNG/gate_slime.png");
+	int magma_land= LoadGraph("C:/Users/±èµ¿ºó/Desktop/My Work/damagochi/image/PNG/magmaland.png");
+	int gate_magma= LoadGraph("C:/Users/±èµ¿ºó/Desktop/My Work/damagochi/image/PNG/gate_magma.png");
+	int sleep= LoadGraph("C:/Users/±èµ¿ºó/Desktop/My Work/damagochi/image/PNG/sleep.png");
+public:
+	void draw();
+	void gate_h();
+	void gate_f();
+	void zone_f();
+	void wait();
+	void slimeland();
+	void gate_s();
+	void magmaland();
+	void gate_m();
+	void sleepzone();
+	
+};

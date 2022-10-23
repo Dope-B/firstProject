@@ -1,0 +1,19 @@
+#pragma once
+#include "DxLib.h"
+#include "blackone.h"
+#include "slime.h"
+#include "magma.h"
+class Slime;
+class Magma;
+class acter;
+class Bullet  {
+	int bullet = LoadGraph("C:/Users/±èµ¿ºó/Desktop/My Work/damagochi/image/PNG/bullet.png");
+	int trigger = 0;
+	int a = 1;
+	int bul_sound= LoadSoundMem("C:/Users/±èµ¿ºó/Desktop/My Work/damagochi/sound/shoot.wav");
+public:
+	int x_b, y_b;
+	void shoot_bs(acter&k,Slime&s);
+	void press();
+	void shoot_bm(acter&k, Magma&m);
+};

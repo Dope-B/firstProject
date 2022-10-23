@@ -1,0 +1,29 @@
+#pragma once
+#include "DxLib.h"
+#include <iostream>
+#include "blackone.h"
+#include <string>
+#include "Key.h"
+using namespace std;
+
+class Menu
+{
+private:
+	
+	char name[128];
+	int cursor= LoadGraph("C:/Users/±èµ¿ºó/Desktop/My Work/damagochi/image/PNG/cursor.png");
+	int mestart = LoadGraph("C:/Users/±èµ¿ºó/Desktop/My Work/damagochi/image/PNG/mestart.png");
+	int mehelp = LoadGraph("C:/Users/±èµ¿ºó/Desktop/My Work/damagochi/image/PNG/mehelp.png");
+	int mequit = LoadGraph("C:/Users/±èµ¿ºó/Desktop/My Work/damagochi/image/PNG/mequit.png");
+	int title= LoadGraph("C:/Users/±èµ¿ºó/Desktop/My Work/damagochi/image/PNG/name.png");
+	int enter= LoadSoundMem("C:/Users/±èµ¿ºó/Desktop/My Work/damagochi/sound/es.wav");
+	int move_me= LoadSoundMem("C:/Users/±èµ¿ºó/Desktop/My Work/damagochi/sound/move_me.wav");
+	int help_menu= LoadGraph("C:/Users/±èµ¿ºó/Desktop/My Work/damagochi/image/PNG/Help Menu.png");
+public:
+	int x = 0, y = 140;
+	void draw_me();
+	void draw_cs();
+	void move_cs();
+	void sound_enter();
+	void draw_HM();
+};

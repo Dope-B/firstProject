@@ -1,0 +1,33 @@
+#include "DxLib.h"
+#include "stage.h"
+
+void Stage::draw() {
+	DrawGraph(0, 0, rest, TRUE);
+}
+void Stage::gate_h() {
+	DrawGraph(370, 50, homegate, TRUE);
+}
+void Stage::gate_f() {
+	DrawGraph(350, 300, foodgate, TRUE);
+}
+void Stage::zone_f() {
+	DrawGraph(0, 0, foodzone, TRUE);
+}
+void Stage::wait() {
+	DrawGraph(0, 0, waiting, TRUE);
+}
+void Stage::gate_s() {
+	DrawGraph(50, 350, gate_slime, TRUE);
+}
+void Stage::slimeland() {
+	DrawGraph(0, 0, slime_land, TRUE);
+}
+void Stage::magmaland() {
+	DrawGraph(0, 0, magma_land, TRUE);
+}
+void Stage::gate_m() {
+	DrawGraph(200,350,gate_magma, TRUE);
+}
+void Stage::sleepzone() {
+	DrawGraph(10, 10, sleep, TRUE);
+}

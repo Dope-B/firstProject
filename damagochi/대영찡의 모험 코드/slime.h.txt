@@ -1,0 +1,45 @@
+#pragma once
+#include "DxLib.h"
+#include "bullet.h"
+#include "blackone.h"
+#include <math.h>
+class Bullet;
+class acter;
+class Slime {
+	int sli= LoadGraph("C:/Users/±èµ¿ºó/Desktop/My Work/damagochi/image/PNG/slime.png");
+	int sli_bullet = LoadGraph("C:/Users/±èµ¿ºó/Desktop/My Work/damagochi/image/PNG/slime_bullet.png");
+	int horn= LoadGraph("C:/Users/±èµ¿ºó/Desktop/My Work/damagochi/image/PNG/horn_slime.png");
+	int horn_bullet= LoadGraph("C:/Users/±èµ¿ºó/Desktop/My Work/damagochi/image/PNG/horn_slime_bullet.png");
+	int sound_damaged = LoadSoundMem("C:/Users/±èµ¿ºó/Desktop/My Work/damagochi/sound/crash.mp4");
+	int sound_die= LoadSoundMem("C:/Users/±èµ¿ºó/Desktop/My Work/damagochi/sound/monster_die.wav");
+	int mon_damaged= LoadSoundMem("C:/Users/±èµ¿ºó/Desktop/My Work/damagochi/sound/mon_damaged.wav");
+	int s_hp=5;
+	int h_hp=10;
+	int sb_x, sb_y;
+	int trigger=0;
+	int stage=1;
+	int angle_x;
+	int angle_y;
+	int bul_trigger=0;
+	double length;
+	double height;
+	double hypo;
+public:
+	int s_x, s_y;
+	void getran();
+	void draw_s();	
+	void draw_s_b();
+	void draw_h();
+	void draw_h_b();
+	void reset_stage();
+	void summon(Bullet&k,acter&b);
+	void get_stage();
+	void move_s();
+	void getran_s();
+	bool check(acter&b);
+	bool check();
+	void act_damaged(acter&b);
+	void reset_s_hp();
+	void reset_h_hp();
+	void shoot_bul(acter&b);
+};

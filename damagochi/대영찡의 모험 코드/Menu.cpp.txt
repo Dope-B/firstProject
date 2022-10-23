@@ -1,0 +1,47 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include "menu.h"
+#include<conio.h>
+#include <windows.h>
+
+using namespace std;
+
+void Menu::draw_cs() {
+		DrawGraph(x,y, cursor, TRUE);
+}
+void Menu::draw_me() {
+	DrawRotaGraph(150,100,3.0,0.0, mestart,TRUE);
+	DrawRotaGraph(150,200,3.0,0.0, mehelp,TRUE);
+	DrawRotaGraph(150,300,3.0,0.0, mequit,TRUE);
+	DrawRotaGraph(400, 150, 2.2, 0.0, title, TRUE);
+}
+void Menu::move_cs() {
+	if (Key[KEY_INPUT_DOWN] == 1) {
+		ChangeVolumeSoundMem(90, move_me);
+		PlaySoundMem(move_me, DX_PLAYTYPE_BACK);
+		if (y <= 200) {
+			y += 100;
+			
+		}
+		else {
+			y = y;
+		}
+	}
+	if (Key[KEY_INPUT_UP] == 1) {
+		ChangeVolumeSoundMem(90, move_me);
+		PlaySoundMem(move_me, DX_PLAYTYPE_BACK);
+		if (y >= 100) {
+			y -= 100;
+			
+		}
+		else {
+			y = y;
+		}
+	}
+}
+void Menu::sound_enter() {
+	ChangeVolumeSoundMem(90, enter);
+	PlaySoundMem(enter, DX_PLAYTYPE_BACK);
+}
+void Menu::draw_HM() {
+	DrawGraph(0, 0, help_menu,TRUE);
+}

@@ -1,0 +1,190 @@
+#include "bullet.h"
+
+void Bullet::shoot_bs(acter&k,Slime&s) {
+	switch (trigger) {
+	case 1: 
+			if (x_b >= 480||((x_b>=s.s_x-35&&x_b<=s.s_x+40)&&(y_b>=s.s_y-35&&y_b<=s.s_y+40))) {
+				trigger = 0;
+				x_b = -1000;
+				y_b = -1000;
+			}
+			else {
+				if (a == 1) {
+					x_b = k.x1 + 23;
+					y_b = k.y1 + 30;
+					a = 0;
+				}
+				else
+				{
+				DrawGraph(x_b, y_b, bullet, TRUE);
+				x_b += 12;
+				}
+				
+			}
+			break;
+	case 2:
+			if (y_b >= 420 || ((x_b >= s.s_x - 35 && x_b <= s.s_x + 40) && (y_b >= s.s_y - 35 && y_b <= s.s_y + 40))) {
+				trigger = 0;
+				x_b = -1000;
+				y_b = -1000;
+			}
+			else {
+				if (a == 1) {
+					x_b = k.x1 + 23;
+					y_b = k.y1 + 30;
+					a = 0;
+				}
+				else
+				{	
+				DrawGraph(x_b, y_b, bullet, TRUE);
+				y_b += 12;
+				}
+			
+			}
+			break;
+
+
+	case 3:
+			if (x_b <= -12 || ((x_b >= s.s_x - 35 && x_b <= s.s_x + 40) && (y_b >= s.s_y - 35 && y_b <= s.s_y + 40))) {
+				trigger = 0;
+				x_b = 1000;
+				y_b = 1000;
+			}
+			else {
+				if (a == 1) {
+					x_b = k.x1 + 23;
+					y_b = k.y1 + 30;
+					a = 0;
+				}
+				else
+				{
+				DrawGraph(x_b, y_b, bullet, TRUE);
+				x_b -= 12;
+				}
+				
+			}
+			break;
+
+		
+	case 4:
+			if (y_b <= -20 || ((x_b >= s.s_x - 35 && x_b <= s.s_x + 40) && (y_b >= s.s_y - 35 && y_b <= s.s_y + 40))) {
+				trigger = 0;
+				x_b = 1000;
+				y_b = 1000;
+			}
+			else {
+				if (a == 1) {
+					x_b = k.x1 + 23;
+					y_b = k.y1 + 30;
+					a = 0;
+				}
+				else
+				{
+				DrawGraph(x_b, y_b, bullet, TRUE);
+				y_b -= 12;
+				}		
+			}
+			break;
+	}
+}
+void Bullet::shoot_bm(acter&k, Magma&m) {
+		switch (trigger) {
+	case 1: 
+			if (x_b >= 480|| ((x_b >= m.m_x - 35 && x_b <= m.m_x + 40) && (y_b >= m.m_y - 35 && y_b <= m.m_y + 40))) {
+				trigger = 0;
+				x_b = -1000;
+				y_b = -1000;
+			}
+			else {
+				if (a == 1) {
+					x_b = k.x1 + 23;
+					y_b = k.y1 + 30;
+					a = 0;
+				}
+				else
+				{
+				DrawGraph(x_b, y_b, bullet, TRUE);
+				x_b += 12;
+				}
+				
+			}
+			break;
+	case 2:
+			if (y_b >= 420 || ((x_b >= m.m_x - 35 && x_b <= m.m_x + 40) && (y_b >= m.m_y - 35 && y_b <= m.m_y + 40))) {
+				trigger = 0;
+				x_b = -1000;
+				y_b = -1000;
+			}
+			else {
+				if (a == 1) {
+					x_b = k.x1 + 23;
+					y_b = k.y1 + 30;
+					a = 0;
+				}
+				else
+				{	
+				DrawGraph(x_b, y_b, bullet, TRUE);
+				y_b += 12;
+				}
+			
+			}
+			break;
+
+
+	case 3:
+			if (x_b <= -12 || ((x_b >= m.m_x - 35 && x_b <= m.m_x + 40) && (y_b >= m.m_y - 35 && y_b <= m.m_y + 40))) {
+				trigger = 0;
+				x_b = 1000;
+				y_b = 1000;
+			}
+			else {
+				if (a == 1) {
+					x_b = k.x1 + 23;
+					y_b = k.y1 + 30;
+					a = 0;
+				}
+				else
+				{
+				DrawGraph(x_b, y_b, bullet, TRUE);
+				x_b -= 12;
+				}
+				
+			}
+			break;
+
+		
+	case 4:
+			if (y_b <= -20 || ((x_b >= m.m_x - 35 && x_b <= m.m_x + 40) && (y_b >= m.m_y - 35 && y_b <= m.m_y + 40))) {
+				trigger = 0;
+				x_b = 1000;
+				y_b = 1000;
+			}
+			else {
+				if (a == 1) {
+					x_b = k.x1 + 23;
+					y_b = k.y1 + 30;
+					a = 0;
+				}
+				else
+				{
+				DrawGraph(x_b, y_b, bullet, TRUE);
+				y_b -= 12;
+				}		
+			}
+			break;
+	}
+}
+
+void Bullet::press() {
+	if (trigger == 0) {
+		if (CheckHitKey(KEY_INPUT_RIGHT) && CheckHitKey(KEY_INPUT_SPACE)) { trigger = 1; a = 1; ChangeVolumeSoundMem(60, bul_sound); PlaySoundMem(bul_sound, DX_PLAYTYPE_BACK);
+		}
+		else if (CheckHitKey(KEY_INPUT_DOWN) && CheckHitKey(KEY_INPUT_SPACE)) { trigger = 2; a = 1; ChangeVolumeSoundMem(60, bul_sound); PlaySoundMem(bul_sound, DX_PLAYTYPE_BACK);
+		}
+		else if (CheckHitKey(KEY_INPUT_LEFT) && CheckHitKey(KEY_INPUT_SPACE)) { trigger = 3; a = 1; ChangeVolumeSoundMem(60, bul_sound); PlaySoundMem(bul_sound, DX_PLAYTYPE_BACK);
+		}
+		else if (CheckHitKey(KEY_INPUT_UP) && CheckHitKey(KEY_INPUT_SPACE)) { trigger = 4; a = 1; ChangeVolumeSoundMem(60, bul_sound); PlaySoundMem(bul_sound, DX_PLAYTYPE_BACK);
+		}
+	}
+
+}

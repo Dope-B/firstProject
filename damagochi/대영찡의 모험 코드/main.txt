@@ -1,0 +1,170 @@
+#include "DxLib.h"
+#include "blackone.h"
+#include "menu.h"
+#include "Key.h"
+#include "stage.h"
+#include "Eat.h"
+#include "bullet.h"
+#include "slime.h"
+#include "magma.h"
+using namespace std;
+int main(){
+	ChangeWindowMode(TRUE), DxLib_Init(), SetDrawScreen(DX_SCREEN_BACK);
+	acter black;
+	Menu start_page;
+	Stage play;
+	Eat prey;
+	Bullet bul;
+	Slime sli;
+	Magma mag;
+	black.play_bgm();
+	while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0 && gpUpdateKey() == 0) 
+	{
+	while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0 && gpUpdateKey() == 0)//menu
+		{	
+
+			if (start_page.y==40 && CheckHitKey(KEY_INPUT_RETURN) == 1)
+			{
+				start_page.sound_enter();
+				break;
+			}
+			else if (start_page.y == 140 && CheckHitKey(KEY_INPUT_RETURN) == 1) {
+				while (ScreenFlip() == 0 &&  ClearDrawScreen() == 0 ) {
+					
+					start_page.draw_HM();
+					if (CheckHitKey(KEY_INPUT_ESCAPE) == 1) {
+						break;
+					
+					}
+				}
+			}
+			else if (start_page.y == 240 && CheckHitKey(KEY_INPUT_RETURN) == 1) {
+				DxLib_End();
+			}
+			else
+			black.back();
+			start_page.draw_me();
+			start_page.move_cs();
+			start_page.draw_cs();
+		}
+	black.reset_pos();
+		while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0 && gpUpdateKey() == 0)
+		{//home play
+			if (CheckHitKey(KEY_INPUT_ESCAPE) == 1) {
+				DxLib_End();
+				}
+				play.draw();
+				play.sleepzone();
+				play.gate_f();
+				play.gate_m();
+				play.gate_s();
+				black.state();
+				black.move();
+				black.sleeping();
+				black.draw();
+				
+				if (black.check_f() == TRUE)
+				{//food zone play
+					black.reset_pos();
+					prey.getran();
+					while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0 && gpUpdateKey() == 0)
+					{
+						play.zone_f();
+						play.gate_h();
+						black.state();
+						black.move();
+						prey.draw(black);
+						black.draw();
+				
+						if (black.check_h() == TRUE) 
+						{//return to home
+							black.reset_pos();
+							break;
+						}
+					}
+				}	
+				else if (black.check_s() == TRUE && black.check_tired()== FALSE)
+				{//slime zone play
+					black.reset_pos();
+					while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0 && gpUpdateKey() == 0) {
+						if (CheckHitKey(KEY_INPUT_ESCAPE) == 1) {
+							DxLib_End();
+						}
+						play.slimeland();
+						play.gate_h();
+						black.state();
+						if ((sli.check(black)||sli.check()) == TRUE) { sli.getran_s(); }
+						black.move();
+						black.draw();
+						bul.press();
+						bul.shoot_bs(black,sli);
+						sli.get_stage();
+						sli.move_s();
+						sli.summon(bul,black);
+						sli.shoot_bul(black);
+						sli.act_damaged(black);
+						if(black.hp<=0){
+							black.reset_pos();
+							black.afterdun();
+							sli.reset_stage();
+							sli.reset_s_hp();
+							sli.reset_h_hp();
+							black.hp = 10;
+							break;
+						}
+						if (black.check_h() == TRUE)
+						{//return to home
+							black.reset_pos();
+							black.afterdun();
+							sli.reset_stage();
+							sli.reset_s_hp();
+							sli.reset_h_hp();
+							break;
+						}
+					}
+				}
+				else if (black.check_m() == TRUE && black.check_tired() == FALSE)
+				{//magma zone play
+					black.reset_pos();
+					while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0 && gpUpdateKey() == 0) {
+						if (CheckHitKey(KEY_INPUT_ESCAPE) == 1) {
+							DxLib_End();
+						}
+						play.magmaland();
+						play.gate_h();
+						black.state();
+						if (mag.check_m() || mag.check_m_d(black) == TRUE) { mag.getran_m(); }
+						black.move();
+						black.draw();
+						bul.press();
+						bul.shoot_bm(black,mag);
+						mag.get_stage();
+						mag.move_m();
+						mag.summon(bul,black);
+						mag.shoot_bul(black);
+						mag.act_damaged(black);
+						if (black.hp <= 0) {
+							black.reset_pos();
+							black.afterdun();
+							mag.reset_mag_hp();
+							mag.reset_mag_mon_hp();
+							mag.reset_stage();
+							black.hp = 10;
+							break;
+						}
+						if (black.check_h() == TRUE)
+						{//return to home
+							black.reset_pos();
+							black.afterdun();
+							mag.reset_mag_hp();
+							mag.reset_mag_mon_hp();
+							mag.reset_stage();
+							break;
+						}
+					}
+				}
+		}
+	}
+	DxLib_End();
+	return 0;
+}

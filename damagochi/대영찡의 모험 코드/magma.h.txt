@@ -1,0 +1,47 @@
+#pragma once
+#include "DxLib.h"
+#include "bullet.h"
+#include <math.h>
+#include "blackone.h"
+#define PI 3.141592
+class Bullet;
+class acter;
+class Magma {
+	int mag = LoadGraph("C:/Users/±èµ¿ºó/Desktop/My Work/damagochi/image/PNG/magma.png");
+	int mag_bullet = LoadGraph("C:/Users/±èµ¿ºó/Desktop/My Work/damagochi/image/PNG/magma_bullet.png");
+	int mag_mon = LoadGraph("C:/Users/±èµ¿ºó/Desktop/My Work/damagochi/image/PNG/monster.png");
+	int mag_mon_bullet = LoadGraph("C:/Users/±èµ¿ºó/Desktop/My Work/damagochi/image/PNG/monsterattack.png");
+	int sound_damaged = LoadSoundMem("C:/Users/±èµ¿ºó/Desktop/My Work/damagochi/sound/crash.mp4");
+	int sound_die = LoadSoundMem("C:/Users/±èµ¿ºó/Desktop/My Work/damagochi/sound/monster_die.wav");
+	int mon_damaged = LoadSoundMem("C:/Users/±èµ¿ºó/Desktop/My Work/damagochi/sound/mon_damaged.wav");
+	int hp;
+	int mb_x, mb_y;
+	int trigger=0;
+	int stage = 1;
+	int angle_x, angle_y;
+	int mag_hp = 8;
+	int mag_mon_hp = 16;
+	int bul_trigger = 0;
+	double length;
+	double height;
+	double hypo;
+public:
+	int m_x, m_y;
+	void getran();
+	void draw_m();
+	void draw_m_b();
+	void draw_mon();
+	void draw_mon_b();
+	void summon(Bullet&k,acter&b);
+	void get_stage();
+	void move_m();
+	void getran_m();
+	bool check_m();
+	bool check_m_d(acter&b);
+	void act_damaged(acter&b);
+	void reset_stage();
+	void reset_mag_hp();
+	void reset_mag_mon_hp();
+	void shoot_bul(acter&b);
+};
+

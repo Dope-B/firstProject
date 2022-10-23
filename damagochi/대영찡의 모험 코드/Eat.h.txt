@@ -1,0 +1,16 @@
+#pragma once
+#include "DxLib.h"
+#include "blackone.h"
+
+class Eat {
+private:
+	int x;
+	int y;
+	int m_a;
+	int trigger;
+	int meat= LoadGraph("C:/Users/±èµ¿ºó/Desktop/My Work/damagochi/image/PNG/meat.png");
+	int apple= LoadGraph("C:/Users/±èµ¿ºó/Desktop/My Work/damagochi/image/PNG/apple.png");
+public:
+	void draw(acter&k);
+	void getran();
+};

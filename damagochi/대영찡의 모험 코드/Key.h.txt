@@ -1,0 +1,5 @@
+#pragma once
+#include "DxLib.h"
+extern int Key[256];
+extern int gpUpdateKey();
+ 
