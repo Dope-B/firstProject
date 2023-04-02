@@ -19,7 +19,7 @@ public:
 };
 ```
 
-```
+```C++
 while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0 && gpUpdateKey() == 0){
   // Loop 실행 
 }
